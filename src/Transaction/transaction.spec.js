@@ -22,31 +22,38 @@ import '@parity/shared/lib/environment/tests';
 
 // Mock API for tests
 import * as Api from '../parity';
-Api.api = {
-  util: EthApi.prototype.util
-};
-
 import BigNumber from 'bignumber.js';
 import { Transaction, LocalTransaction } from './transaction';
+
+Api.api.util = EthApi.prototype.util;
 
 describe('dapps/localtx/Transaction', () => {
   describe('rendering', () => {
     it('renders without crashing', () => {
       const transaction = {
         hash: '0x1234567890',
+        from: '0x123467',
         nonce: new BigNumber(15),
         gasPrice: new BigNumber(10),
         gas: new BigNumber(10)
       };
+
+      const stats = {
+        firstSeen: 1,
+        propagatedTo: {}
+      };
+
       const rendered = shallow(
         <Transaction
+          idx={ 1 }
           isLocal={ false }
           transaction={ transaction }
           blockNumber={ new BigNumber(0) }
+          stats={ stats }
         />
       );
 
-      expect(rendered).to.be.defined;
+      expect(rendered).toBeDefined();
     });
   });
 });
@@ -61,7 +68,7 @@ describe('dapps/localtx/LocalTransaction', () => {
         />
       );
 
-      expect(rendered).to.be.defined;
+      expect(rendered).toBeDefined();
     });
   });
 });

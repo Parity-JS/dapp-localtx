@@ -33,7 +33,8 @@
 }
 
 .edit {
-  label, input {
+  label,
+  input {
     display: block;
   }
 }
