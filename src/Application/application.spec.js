@@ -26,7 +26,7 @@ describe('dapps/localtx/Application', () => {
     it('renders without crashing', () => {
       const rendered = shallow(<Application />);
 
-      expect(rendered).to.be.defined;
+      expect(rendered).toBeDefined();
     });
   });
 });
